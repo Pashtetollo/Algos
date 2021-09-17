@@ -29,22 +29,34 @@ public class Stack {
         }
     }
 
-    public int pop() throws RuntimeException {
+    public Node pop() throws RuntimeException {
         if (this.head == null) {
             throw new RuntimeException("Your stack is empty");
         }
-        int val = this.head.value;
+        Node val = this.head;
         this.head = head.next;
         return val;
     }
 
-    public int peek() throws RuntimeException {
+    public Node peek() throws RuntimeException {
         if (this.head == null) {
             throw new RuntimeException("Your stack is empty");
         }
-        return this.head.value;
+        return this.head;
     }
 
+    public Node get(int position) throws RuntimeException{
+        Node temp = this.head;
+            for (int i = 1; i< position; i++){
+                if(temp.next != null) {
+                    temp = temp.next;
+                }
+                else{
+                    throw new RuntimeException("Index out of range");
+                }
+            }
+            return temp;
+    }
     public void printStack() {
         if (this.head == null) {
             System.out.println("Stack is empty");
@@ -69,9 +81,10 @@ public class Stack {
                     this.push(Integer.parseInt(arr[i]));
                 }
             }
-            case ("/pop") -> System.out.println("deleted element: " + this.pop());
-            case ("/peek") -> System.out.println("value on top of stack: " + this.peek());
+            case ("/pop") -> System.out.println("deleted element: " + this.pop().value);
+            case ("/peek") -> System.out.println("value on top of stack: " + this.peek().value);
             case ("/exit") -> System.exit(0);
+            case("/get") -> System.out.println(this.get(Integer.parseInt(arr[1])).value);
             case ("/printStack") -> this.printStack();
             case ("/help") -> System.out.println("""
                     /push <num1> <num2> <num...> - add numbers to a stack
@@ -79,6 +92,7 @@ public class Stack {
                     /pop - delete element on top of a stack
                     /exit - exit the program
                     /help - print this window
+                    /get <pos> - get value of an element on <pos> position (1st element`s position is 1)
                     /printStack - print inners of a stack.""");
             default -> System.out.println(input + " is not recognized as internal command");
         }

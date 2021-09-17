@@ -8,7 +8,7 @@ public class StackTest {
         stack.push(4);
         stack.push(5);
         stack.push(3);
-        assertEquals(stack.peek(), 3);
+        assertEquals(stack.peek().value, 3);
     }
 
     @Test
@@ -17,16 +17,27 @@ public class StackTest {
         stack.push(4);
         stack.push(5);
         stack.push(3);
-        assertEquals(stack.pop(), 3);
-        assertEquals(stack.pop(), 5);
+        assertEquals(stack.pop().value, 3);
+        assertEquals(stack.pop().value, 5);
     }
 
     @Test
     public void pushTest (){
         Stack stack = new Stack();
             stack.push(4);
-            assertEquals(stack.peek(), 4);
+            assertEquals(stack.peek().value, 4);
             stack.push(2);
-            assertEquals(stack.peek(), 2);
+            assertEquals(stack.peek().value, 2);
         }
+
+    @Test
+    public void getTest(){
+        Stack stack = new Stack();
+        stack.push(5);
+        stack.push(7);
+        assertEquals(stack.get(2).value, 5);
+        stack.push(3);
+        assertEquals(stack.get(2).value, 7);
+        assertEquals(stack.get(1).value, 3);
+    }
 }
