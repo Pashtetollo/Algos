@@ -13,11 +13,11 @@ there are only S packets of food per day. Determine the maximum number of hamste
 The input file hamstr.in consists of C + 2 lines
 .  
 
-• The first line contains S - your daily food supply. 0 ≤ S ≤ 109
+• The first line contains S - your daily food supply. 0 ≤ S ≤ 10^9
 .
 
 • The second line contains C - the total number of hamsters on sale.
-1 ≤ C ≤ 105
+1 ≤ C ≤ 10^5
 .
 
 • The next C lines contain Hi, Gi are integers separated by a space, which means
