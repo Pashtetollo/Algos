@@ -1,5 +1,5 @@
-# Algos
-
+<h1><b>HAMSTERS</b></h1>
+<img src="https://www.pbh2.com/wordpress/wp-content/uploads/2011/03/hamster-strawberry.jpg" alt="hamster incoming">
 The pet store sells hamsters. These are peaceful domestic beings, however
 it turned out that they have interesting eating behavior.
 In order to feed a hamster living alone, you need H packets of food
