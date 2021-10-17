@@ -47,17 +47,17 @@ public class DFS {
                                                 Integer originalNode, ArrayList<Integer> travelPath) {
         Node node = nodeRepository.getNode(nodeId);
         if ((node.innerState == 1)) {
-            if(Objects.equals(originalNode, nodeId)) {
+            if (Objects.equals(originalNode, nodeId)) {
                 travelPath.add(nodeId);
                 return travelPath;
-            } else{
+            } else {
                 return null;
             }
         }
         node.innerState = 1;
         for (int connectedNodeId : node.connectedNodes) {
 
-            if (deepSearch(nodeRepository, connectedNodeId, originalNode, travelPath)!= null) {
+            if (deepSearch(nodeRepository, connectedNodeId, originalNode, travelPath) != null) {
                 travelPath.add(nodeId);
                 return travelPath;
             }
@@ -68,17 +68,17 @@ public class DFS {
     public static void main(String[] args) throws IOException {
         ArrayList<Integer> travelpathRecursed = loopDetectorBFS("src/input.in");
         StringBuilder output = new StringBuilder();
-        if(travelpathRecursed == null){
+        if (travelpathRecursed == null) {
             output.append("No loops detected in entered graph!");
         } else {
             output.append("Loop detected! It's path is:\n");
             for (int i = travelpathRecursed.size() - 1; i >= 0; i--) {
                 output.append(travelpathRecursed.get(i)).append(" -> ");
-                if(i%10==0){
+                if (i % 10 == 0) {
                     output.append("\n");
                 }
             }
-            output.delete(output.length()-4, output.length());
+            output.delete(output.length() - 4, output.length());
         }
         System.out.println(output);
     }
