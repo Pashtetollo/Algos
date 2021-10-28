@@ -13,7 +13,7 @@ public class DFS {
         adjacent = new LinkedList[totalVertexes];
 
         for (int i = 0; i < adjacent.length; i++)
-            adjacent[i] = new LinkedList<Integer>();
+            adjacent[i] = new LinkedList<>();
 
     }
 

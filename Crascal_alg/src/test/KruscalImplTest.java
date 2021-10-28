@@ -1,12 +1,14 @@
 package test;
 
-import main.FileLineReader;
 import main.KruscalImpl;
 import org.junit.Test;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,11 +26,11 @@ public class KruscalImplTest {
     public void kruscalShrinkGraphTest2()throws Exception{
         String path = "src/resourses/Kruscal.in";
         ArrayList<ArrayList<Integer>> shrunkGraph = KruscalImpl.kruscalShrinkGraph(path);
-        BufferedWriter writer = new BufferedWriter(new FileWriter("src/resourses/Kruscal.out"));
         int totalWeight = 0;
         int weight = 0;
-        int vertex1, vertex2;
-        for (ArrayList<Integer> elem : shrunkGraph) {
+        int vertex1;
+        Integer vertex2;
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter("src/resourses/Kruscal.out"))){for (ArrayList<Integer> elem : shrunkGraph) {
             vertex1 = elem.get(0);
             vertex2 = elem.get(1);
             weight = elem.get(2);
@@ -38,9 +40,13 @@ public class KruscalImplTest {
             writer.write("weight: " +weight +" ");
             writer.write("\n");
         }
-        writer.write("\n" + "Total weight of graph: " + totalWeight);
-        assertEquals(23, totalWeight);
-        writer.close();
+            writer.write("\n" + "Total weight of graph: " + totalWeight);
+            assertEquals(23, totalWeight);
+        } catch (IOException e){
+            Logger logger = Logger.getAnonymousLogger();
+            logger.log(Level.SEVERE, "could not open file for writing", e);
+        }
+
     }
 
 }
