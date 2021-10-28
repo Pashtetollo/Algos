@@ -3,62 +3,56 @@ package main;
 import java.util.*;
 
 
-public class DFS
-{
-    int V;                                          //number of nodes
+public class DFS {
+    int totalVertexes;                                          //number of nodes
 
-    LinkedList<Integer>[] adj;                      //adjacency list
+    LinkedList<Integer>[] adjacent;                      //adjacency list
 
-    DFS(int V)
-    {
-        this.V = V;
-        adj = new LinkedList[V];
+    DFS(int totalVertexes) {
+        this.totalVertexes = totalVertexes;
+        adjacent = new LinkedList[totalVertexes];
 
-        for (int i = 0; i < adj.length; i++)
-            adj[i] = new LinkedList<Integer>();
+        for (int i = 0; i < adjacent.length; i++)
+            adjacent[i] = new LinkedList<Integer>();
 
     }
 
-    void addEdge(int v, int w)
-    {
-        adj[w].add(v);
-        adj[v].add(w);
+    void addEdge(int vertex1, int vertex2) {
+        adjacent[vertex2].add(vertex1);
+        adjacent[vertex1].add(vertex2);
     }
-    void removeEdge(int v, int w)
-    {
-        for(int i=0; i<adj[v].size(); i++) {
-            if (adj[v].get(i) == w) {
-                adj[v].remove(i);
-                }
+
+    void removeEdge(int vertex1, int w) {
+        for (int i = 0; i < adjacent[vertex1].size(); i++) {
+            if (adjacent[vertex1].get(i) == w) {
+                adjacent[vertex1].remove(i);
             }
-        for(int i=0; i<adj[w].size(); i++){
-            if (adj[w].get(i) ==v){
-                adj[w].remove(i);
-                }
+        }
+        for (int i = 0; i < adjacent[w].size(); i++) {
+            if (adjacent[w].get(i) == vertex1) {
+                adjacent[w].remove(i);
             }
+        }
     }
 
-    Boolean isCyclicUtil(int v,
-                         Boolean visited[], int parent)
-    {
+    Boolean isCyclicUtil(int vertex,
+                         Boolean visited[], int parent) {
         // Mark the current node as visited
-        visited[v] = true;
+        visited[vertex] = true;
         Integer i;
 
         // Recur for all the vertices
         // adjacent to this vertex
         Iterator<Integer> it =
-                adj[v].iterator();
-        while (it.hasNext())
-        {
+                adjacent[vertex].iterator();
+        while (it.hasNext()) {
             i = it.next();
 
             // If an adjacent is not
             // visited, then recur for that
             // adjacent
-            if (!visited[i])
-            {
-                if (isCyclicUtil(i, visited, v))
+            if (!visited[i]) {
+                if (isCyclicUtil(i, visited, vertex))
                     return true;
             }
 
@@ -73,25 +67,23 @@ public class DFS
 
     // Returns true if the graph
     // contains a cycle, else false.
-    Boolean isCyclic()
-    {
+    Boolean isCyclic() {
 
         // Mark all the vertices as
         // not visited and not part of
         // recursion stack
-        Boolean visited[] = new Boolean[V];
-        for (int i = 0; i < V; i++)
+        Boolean visited[] = new Boolean[totalVertexes];
+        for (int i = 0; i < totalVertexes; i++)
             visited[i] = false;
 
         // Call the recursive helper
         // function to detect cycle in
         // different DFS trees
-        for (int u = 0; u < V; u++)
-        {
+        for (int currentVertex = 0; currentVertex < totalVertexes; currentVertex++) {
 
-            // Don't recur for u if already visited
-            if (!visited[u])
-                if (isCyclicUtil(u, visited, -1))
+            // Don't recur for currentVertex if already visited
+            if (!visited[currentVertex])
+                if (isCyclicUtil(currentVertex, visited, -1))
                     return true;
         }
 
