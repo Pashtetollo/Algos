@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        ArrayList<ArrayList<Integer>> shrinked = Crascal_Impl.crascalShrinkGraph();
+        String path = "src/resourses/Crascal.in";
+        ArrayList<ArrayList<Integer>> shrinked = Crascal_Impl.crascalShrinkGraph(path);
         BufferedWriter writer = new BufferedWriter(new FileWriter("src/resourses/Crascal.out"));
         int totalWeight = 0;
         int weight =0;

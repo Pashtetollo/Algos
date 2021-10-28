@@ -6,8 +6,8 @@ import java.util.Comparator;
 import java.util.HashSet;
 
 public class Crascal_Impl {
-    public static ArrayList<ArrayList<Integer>> crascalShrinkGraph() throws Exception {
-        String path = "src/resourses/Crascal.in";
+    public static ArrayList<ArrayList<Integer>> crascalShrinkGraph(String path) throws Exception {
+
 
         ArrayList<ArrayList<Integer>> inputArr = FileLineReader.readFile(path);
         inputArr.remove(0);

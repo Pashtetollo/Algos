@@ -17,7 +17,9 @@ public class FileLineReader {
         while((line = reader.readLine())!=null){
             stringArr = (ArrayList<String>) Arrays.stream(line.split(" ")).collect(Collectors.toList());
             //add random weight for vertex
-            stringArr.add(Integer.toString(ThreadLocalRandom.current().nextInt(3, 11)));
+            if(stringArr.size() < 3) {
+                stringArr.add(Integer.toString(ThreadLocalRandom.current().nextInt(3, 11)));
+            }
             ArrayList<Integer> data = new ArrayList<>();
             stringArr.forEach(elem -> data.add(Integer.parseInt(elem)));
             arr.add(data);
