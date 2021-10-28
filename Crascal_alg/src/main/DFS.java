@@ -22,15 +22,15 @@ public class DFS {
         adjacent[vertex1].add(vertex2);
     }
 
-    void removeEdge(int vertex1, int w) {
+    void removeEdge(int vertex1, int vertex2) {
         for (int i = 0; i < adjacent[vertex1].size(); i++) {
-            if (adjacent[vertex1].get(i) == w) {
+            if (adjacent[vertex1].get(i) == vertex2) {
                 adjacent[vertex1].remove(i);
             }
         }
-        for (int i = 0; i < adjacent[w].size(); i++) {
-            if (adjacent[w].get(i) == vertex1) {
-                adjacent[w].remove(i);
+        for (int i = 0; i < adjacent[vertex2].size(); i++) {
+            if (adjacent[vertex2].get(i) == vertex1) {
+                adjacent[vertex2].remove(i);
             }
         }
     }
