@@ -33,9 +33,9 @@ public class KruscalImplTest {
             vertex2 = elem.get(1);
             weight = elem.get(2);
             totalWeight += weight;
-            writer.write(vertex1+ " ");
-            writer.write(vertex2+ " ");
-            writer.write(weight);
+            writer.write("vertex1: " +vertex1+ " ");
+            writer.write("vertex2: "+vertex2+ " ");
+            writer.write("weight: " +weight +" ");
             writer.write("\n");
         }
         writer.write("\n" + "Total weight of graph: " + totalWeight);
