@@ -17,15 +17,18 @@ public class KruscalImpl {
 
         DFS graph = new DFS(InputArray.size()+1);
 
-        ArrayList<ArrayList<Integer>> shrinkedGraph = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> shrunkGraph = new ArrayList<>();
+        Integer vertex1, vertex2;
         for (ArrayList<Integer> currentVertex : InputArray) {
-            graph.addEdge(currentVertex.get(0), currentVertex.get(1));
-            shrinkedGraph.add(currentVertex);
+            vertex1 = currentVertex.get(0);
+            vertex2 = currentVertex.get(1);
+            graph.addEdge(vertex1, vertex2);
+            shrunkGraph.add(currentVertex);
             if (graph.hasCycle()) {
-                shrinkedGraph.remove(currentVertex);
-                graph.removeEdge(currentVertex.get(0), currentVertex.get(1));
+                shrunkGraph.remove(currentVertex);
+                graph.removeEdge(vertex1, vertex2);
             }
         }
-        return shrinkedGraph;
+        return shrunkGraph;
     }
 }

@@ -4,7 +4,7 @@ import java.util.*;
 
 
 public class DFS {
-    private int totalVertexes;
+    private final int totalVertexes;
 
     LinkedList<Integer>[] adjacent;
 
@@ -40,23 +40,21 @@ public class DFS {
     }
 
     private Boolean hasCycleUtil(int vertex,
-                                 Boolean[] visited, int parent) {
+                                 Boolean[] isVisitedArr, int parent) {
         // Mark the current node as visited
-        visited[vertex] = true;
+        isVisitedArr[vertex] = true;
         Integer currentAdjacent;
 
         // Recur for all the vertices
         // adjacent to this vertex
-        Iterator<Integer> it =
-                adjacent[vertex].iterator();
-        while (it.hasNext()) {
-            currentAdjacent = it.next();
+        for (Integer adjacentVertex : adjacent[vertex]) {
+            currentAdjacent = adjacentVertex;
 
             // If an adjacent is not
             // visited, then recur for that
             // adjacent
-            if (isNotVisited(visited, currentAdjacent)) {
-                if (hasCycleUtil(currentAdjacent, visited, vertex)) {
+            if (isNotVisited(isVisitedArr, currentAdjacent)) {
+                if (hasCycleUtil(currentAdjacent, isVisitedArr, vertex)) {
                     return true;
                 }
             }
@@ -77,9 +75,9 @@ public class DFS {
         // Mark all the vertices as
         // not visited and not part of
         // recursion stack
-        Boolean[] visited = new Boolean[totalVertexes];
+        Boolean[] isVisitedArr = new Boolean[totalVertexes];
         for (int i = 0; i < totalVertexes; i++) {
-            visited[i] = false;
+            isVisitedArr[i] = false;
         }
 
         // Call the recursive helper
@@ -88,7 +86,7 @@ public class DFS {
         for (int currentVertex = 0; currentVertex < totalVertexes; currentVertex++) {
 
             // Don't recur for currentVertex if already visited
-            if (isNotVisited(visited, currentVertex) && hasCycleUtil(currentVertex, visited, -1)) {
+            if (isNotVisited(isVisitedArr, currentVertex) && hasCycleUtil(currentVertex, isVisitedArr, -1)) {
                 return true;
             }
         }
