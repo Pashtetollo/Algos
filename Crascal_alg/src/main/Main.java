@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        String path = "src/resourses/Crascal.in";
-        ArrayList<ArrayList<Integer>> shrinked = Crascal_Impl.crascalShrinkGraph(path);
-        BufferedWriter writer = new BufferedWriter(new FileWriter("src/resourses/Crascal.out"));
+        String path = "src/resourses/Kruscal.in";
+        ArrayList<ArrayList<Integer>> shrinked = Kruscal_Impl.kruscalShrinkGraph(path);
+        BufferedWriter writer = new BufferedWriter(new FileWriter("src/resourses/Kruscal.out"));
         int totalWeight = 0;
         int weight =0;
         int node1, node2;
