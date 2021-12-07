@@ -8,7 +8,6 @@ def get_all_powers_of_num(number, str_number):
     while len(square_number) <= max_len:
         square_number = bin(number ** len(return_array)).replace('0b', '')
         return_array.append(square_number)
-    print(return_array[::-1])
     return return_array[::-1]
 
 
