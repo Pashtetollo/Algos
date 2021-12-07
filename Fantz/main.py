@@ -1,9 +1,6 @@
-import re
-
-
 def get_all_powers_of_num(number, str_number):
     return_array = list()
-    max_len = len(re.split(r'^0*', str_number)[1])
+    max_len = len(str_number)
     square_number = ''
     while len(square_number) <= max_len:
         square_number = bin(number ** len(return_array)).replace('0b', '')
